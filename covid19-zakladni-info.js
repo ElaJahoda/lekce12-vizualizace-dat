@@ -29,11 +29,18 @@ fetch('./variables.json')
             // pridej do prehledu podil pribytku nakazenych ve vekove 
             // skupine 65+ za posledni mereny den z celkoveho pribytku
             // nakazenych za posledni mereny den
+            let podil = Math.round(parseInt(zakladniInfo.potvrzene_pripady_65_vcerejsi_den) / parseInt(zakladniInfo.potvrzene_pripady_vcerejsi_den) * 100);
+            document.getElementById('js-podil-ve-skupine').innerText = `${podil} %`;
 
             // UKOL NA CVICENI
             // proved validaci, zda plati podminka 
             // celkem_potvrzeni = aktivni + vyleceni + umrti
             // vysledek validace vypis do konzole pomoci console.log()
+            if(parseInt(zakladniInfo.aktivni_pripady) + parseInt(zakladniInfo.vyleceni) + parseInt(zakladniInfo.umrti) === parseInt(zakladniInfo.potvrzene_pripady_celkem)) {
+                console.log('ano');
+            } else {
+                console.log('ne')
+            }
 
             // BONUSOVY UKOL NA CVICENI
             // proved refactoring lokalizace datumu a cislnych hodnot
@@ -43,3 +50,7 @@ fetch('./variables.json')
     .catch(error => {
         console.error('Chyba aplikace (zakladni info): ', error);
     })
+
+    function podil() {
+  
+    }
